@@ -1,15 +1,8 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React, { useState, useEffect } from 'react';
-import { TOKEN } from '@env';
+import React, { useState, useEffect } from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View, Button, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { TOKEN } from '@env'
 
 function App(): React.JSX.Element {
   const [username, setUsername] = useState('');
@@ -66,7 +59,7 @@ function App(): React.JSX.Element {
 
       for (const repo of repos) {
         let page = 1;
-        let commits = [];
+        let commits: any[] = [];
         while (true) {
           const commitsResponse = await axios.get(`https://api.github.com/repos/${usernameToFetch}/${repo.name}/commits?since=${since}&until=${until}&per_page=100&page=${page}`, {
             headers: {
