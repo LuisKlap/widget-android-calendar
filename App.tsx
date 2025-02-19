@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { SafeAreaView, StyleSheet, TextInput, View, Button, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, StyleSheet, TextInput, View, Button, Text, NativeModules } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import { TOKEN } from '@env'
+import { TOKEN } from '@env';
+
+const { MyWidgetModule } = NativeModules;
+
+// Obtenha os IDs ativos do widget
 
 function App(): React.JSX.Element {
   const [username, setUsername] = useState('');
@@ -10,6 +14,16 @@ function App(): React.JSX.Element {
   const [dataFound, setDataFound] = useState<boolean | null>(null);
 
   useEffect(() => {
+    MyWidgetModule.getActiveWidgetIds().then((widgetIds: any) => {
+      widgetIds.forEach((id: any) => {
+        MyWidgetModule.updateWidgetStrings(
+          id,
+          "Contributions",
+          "Total commits",
+          "View Details"
+        );
+      });
+    });
     const loadUsername = async () => {
       try {
         const savedUsername = await AsyncStorage.getItem('username');
@@ -82,6 +96,17 @@ function App(): React.JSX.Element {
 
       setDataFound(allCommitDates.length > 0);
       console.log('Commit dates fetched:', allCommitDates);
+
+      MyWidgetModule.getActiveWidgetIds().then((widgetIds: any) => {
+        widgetIds.forEach((id: any) => {
+          MyWidgetModule.updateWidgetStrings(
+            id,
+            "Contributions",
+            "Total commits",
+            "View Details"
+          );
+        });
+      });
     } catch (error) {
       console.error('Error fetching commit dates:', error);
       setDataFound(false);
