@@ -1,8 +1,4 @@
-package com.example.widget
-
-data class Repo(
-    val name: String
-)
+package com.example.routify.model
 
 data class Commit(
     val commit: CommitDetails

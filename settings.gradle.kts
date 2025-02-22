@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Widget"
+rootProject.name = "Routify"
 include(":app")
+ 
