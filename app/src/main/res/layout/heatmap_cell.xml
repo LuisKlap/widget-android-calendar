@@ -3,4 +3,4 @@
     android:id="@+id/cell_view"
     android:layout_width="12dp"
     android:layout_height="12dp"
-    android:background="@color/gray" />
+    android:background="@drawable/heatmap_cell_background" />

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RemoteViews
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -50,5 +51,16 @@ class MainActivity : AppCompatActivity() {
             Log.d("ROUTIFYLOG.MainActivity.onCreate", "Commit dates updated: $dates")
             adapter.submitList(dates)
         })
+
+        val views = RemoteViews(packageName, R.layout.main_widget)
+        Log.d("ROUTIFYLOG.MainActivity.onCreate", "views: $views")
+
+        // Verifique se o GridView está presente no layout
+        try {
+            views.setInt(R.id.heatmap_grid, "setBackgroundResource", R.color.gray)
+            Log.d("ROUTIFYLOG.MainActivity.onCreate", "heatmap_grid encontrado no layout")
+        } catch (e: Exception) {
+            Log.e("ROUTIFYLOG.MainActivity.onCreate", "heatmap_grid não encontrado no layout", e)
+        }
     }
 }

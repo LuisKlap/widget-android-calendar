@@ -3,6 +3,7 @@ package com.example.routify
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.util.Log
 import android.widget.RemoteViews
 
 /**
@@ -14,31 +15,20 @@ class MainWidget : AppWidgetProvider() {
         appWidgetManager: AppWidgetManager,
         appWidgetIds: IntArray
     ) {
-        // There may be multiple widgets active, so update all of them
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
-        }
+        Log.d("ROUTIFYLOG.MainWidget.onUpdate", "Updating widgets: ${appWidgetIds.joinToString()}")
+        // Delegue a atualização para o HeatmapWidget
+        HeatmapWidget().onUpdate(context, appWidgetManager, appWidgetIds)
     }
 
     override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
+        Log.d("ROUTIFYLOG.MainWidget.onEnabled", "Widget enabled")
+        // Delegue a habilitação para o HeatmapWidget
+        HeatmapWidget().onEnabled(context)
     }
 
     override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
+        Log.d("ROUTIFYLOG.MainWidget.onDisabled", "Widget disabled")
+        // Delegue a desabilitação para o HeatmapWidget
+        HeatmapWidget().onDisabled(context)
     }
-}
-
-internal fun updateAppWidget(
-    context: Context,
-    appWidgetManager: AppWidgetManager,
-    appWidgetId: Int
-) {
-    val widgetText = context.getString(R.string.appwidget_text)
-    // Construct the RemoteViews object
-    val views = RemoteViews(context.packageName, R.layout.main_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
-
-    // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
 }

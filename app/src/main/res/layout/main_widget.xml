@@ -1,22 +1,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Widget.Routify.AppWidget.Container"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.Routify.AppWidgetContainer">
-
-    <TextView
-        android:id="@+id/appwidget_text"
-        style="@style/Widget.Routify.AppWidget.InnerView"
-        android:layout_width="387dp"
-        android:layout_height="167dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.Routify.AppWidgetContainer"
+    android:background="#80000000">
+    
+    <GridView
+        android:id="@+id/heatmap_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="12"
+        android:verticalSpacing="4dp"
+        android:horizontalSpacing="4dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"/>
 </RelativeLayout>

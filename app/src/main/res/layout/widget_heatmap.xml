@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="8dp"
+    android:background="#80000000">
 
     <GridView
         android:id="@+id/heatmap_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="7"
+        android:numColumns="12"
         android:verticalSpacing="4dp"
         android:horizontalSpacing="4dp"
         android:stretchMode="columnWidth"
